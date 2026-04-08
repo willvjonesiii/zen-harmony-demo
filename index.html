@@ -20,7 +20,8 @@
       --cream-warm: #ede7db;
       --teal:       #7ab8c8;
       --teal-deep:  #3d8fa8;
-      --gold:       #c69c6d;
+      --purple:     #625A8C;
+      --purple-glow:rgba(98,90,140,0.5);
       --sage:       #8aab9d;
       --muted:      rgba(246,242,235,0.55);
     }
@@ -88,67 +89,154 @@
     }
     .nav-cta:hover { background: var(--teal); color: var(--ink); }
 
-    /* ─── HERO ─── */
+    /* ─── HERO PORTAL ─── */
     .hero {
-      display: grid;
-      grid-template-columns: 52% 48%;
       min-height: 100dvh;
-      overflow: hidden;
-    }
-    .hero-left {
-      background: var(--ink);
+      position: relative;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
-      padding: clamp(7rem, 12vw, 10rem) clamp(2rem, 5vw, 5rem) clamp(4rem, 6vw, 6rem);
-      position: relative;
+      text-align: center;
+      overflow: hidden;
+      background: var(--ink);
+      padding: clamp(6rem, 12vw, 9rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+      gap: 0;
     }
-    .hero-left::after {
-      content: '';
+    .hero-bg {
       position: absolute;
-      top: 15%; bottom: 15%; right: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--teal-deep), transparent);
-      opacity: 0.5;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      opacity: 0.1;
+      filter: blur(3px) saturate(0.4);
+      pointer-events: none;
+    }
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 55%, rgba(98,90,140,0.18) 0%, var(--ink) 68%);
+      pointer-events: none;
+    }
+    .hero-text-top {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 2rem;
     }
     .hero-eyebrow {
+      display: block;
       font-size: 0.68rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 1.8rem;
+      margin-bottom: 1rem;
     }
     .hero-h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.8rem, 6.5vw, 6.5rem);
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
       font-weight: 300;
-      line-height: 1.02;
+      line-height: 1.06;
       color: var(--cream);
-      margin-bottom: 1.8rem;
     }
-    .hero-h1 em {
-      font-style: italic;
-      color: var(--gold);
+    .hero-h1 em { font-style: italic; color: var(--purple); }
+
+    /* ─── PORTAL ─── */
+    .portal-wrap {
+      position: relative;
+      z-index: 2;
+      width: clamp(180px, 26vw, 320px);
+      height: clamp(180px, 26vw, 320px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      flex-shrink: 0;
+    }
+    .portal-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      animation: portal-pulse 3.5s ease-in-out infinite;
+    }
+    .portal-ring-1 {
+      inset: 26%;
+      border-color: rgba(98,90,140,0.9);
+      border-width: 2px;
+      animation-duration: 2.8s;
+      animation-delay: 0s;
+    }
+    .portal-ring-2 {
+      inset: 14%;
+      border-color: rgba(98,90,140,0.55);
+      animation-delay: 0.35s;
+    }
+    .portal-ring-3 {
+      inset: 2%;
+      border-color: rgba(98,90,140,0.3);
+      animation-delay: 0.7s;
+      animation-duration: 3.5s;
+    }
+    .portal-ring-4 {
+      inset: -12%;
+      border-color: rgba(98,90,140,0.15);
+      animation-delay: 1.05s;
+      animation-duration: 4s;
+    }
+    .portal-ring-5 {
+      inset: -28%;
+      border-color: rgba(122,184,200,0.08);
+      animation-delay: 1.4s;
+      animation-duration: 4.5s;
+    }
+    @keyframes portal-pulse {
+      0%, 100% { opacity: 0.45; transform: scale(1); }
+      50%       { opacity: 1;    transform: scale(1.035); }
+    }
+    .yin-yang-spin {
+      position: relative;
+      z-index: 1;
+      width: 52%;
+      height: 52%;
+      object-fit: contain;
+      animation: portal-rotate 20s linear infinite;
+      filter: drop-shadow(0 0 18px rgba(98,90,140,0.7)) drop-shadow(0 0 40px rgba(98,90,140,0.3));
+    }
+    @keyframes portal-rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* ─── HERO TEXT BOTTOM ─── */
+    .hero-text-bottom {
+      position: relative;
+      z-index: 2;
     }
     .hero-sub {
-      font-size: clamp(0.9rem, 1.1vw, 1.05rem);
-      line-height: 1.8;
-      color: var(--muted);
-      max-width: 42ch;
-      margin-bottom: 2.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(246,242,235,0.75);
+      max-width: 54ch;
+      margin: 0 auto 2rem;
     }
     .hero-ctas {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 1.2rem;
     }
     .btn-primary {
       display: inline-block;
       font-size: 0.72rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      background: var(--teal);
-      color: var(--ink);
+      background: var(--purple);
+      color: var(--cream);
       padding: 0.9rem 2.2rem;
       text-decoration: none;
       white-space: nowrap;
@@ -156,7 +244,7 @@
       font-weight: 500;
       transition: background 0.25s;
     }
-    .btn-primary:hover { background: var(--gold); color: var(--ink); }
+    .btn-primary:hover { background: var(--teal); color: var(--ink); }
     .btn-ghost {
       display: inline-block;
       font-size: 0.72rem;
@@ -173,62 +261,39 @@
     }
     .btn-ghost:hover { border-color: var(--cream); }
     .hero-contact {
-      position: absolute;
-      bottom: 2.2rem;
-      left: clamp(2rem, 5vw, 5rem);
       font-size: 0.68rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(246,242,235,0.35);
+      color: rgba(246,242,235,0.3);
     }
 
-    /* ─── HERO PHOTO PANEL ─── */
-    .hero-right {
-      position: relative;
-      overflow: hidden;
-      background: var(--mid);
+    /* ─── HERO PRACTITIONER BADGE ─── */
+    .hero-practitioner {
+      position: absolute;
+      bottom: 2rem; right: 2.5rem;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
     }
-    .hero-photo {
-      width: 100%;
-      height: 100%;
+    .hero-practitioner-photo {
+      width: 54px; height: 54px;
+      border-radius: 50%;
       object-fit: cover;
-      object-position: top center;
-      display: block;
+      object-position: top;
+      border: 1px solid rgba(98,90,140,0.6);
+      flex-shrink: 0;
     }
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, rgba(12,19,24,0.55) 0%, transparent 35%);
-      z-index: 1;
-    }
-    .hero-right::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 30%;
-      background: linear-gradient(to top, rgba(12,19,24,0.6), transparent);
-      z-index: 1;
-    }
-    .hero-photo-caption {
-      position: absolute;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 2;
-      text-align: right;
-    }
-    .hero-photo-caption strong {
+    .hero-practitioner-text strong {
       display: block;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       font-style: italic;
-      font-weight: 400;
       color: var(--cream);
-      letter-spacing: 0.02em;
     }
-    .hero-photo-caption span {
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+    .hero-practitioner-text span {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--teal);
     }
@@ -267,7 +332,7 @@
       font-size: 0.68rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--purple);
       margin-bottom: 1rem;
     }
     .section-title {
@@ -276,7 +341,7 @@
       font-weight: 300;
       line-height: 1.08;
     }
-    .section-title em { font-style: italic; color: var(--gold); }
+    .section-title em { font-style: italic; color: var(--purple); }
     .max-w { max-width: 1320px; margin-left: auto; margin-right: auto; }
 
     /* ─── INTRO ─── */
@@ -366,7 +431,7 @@
       color: var(--cream);
       margin-bottom: 0.9rem;
     }
-    .svc-name em { font-style: italic; color: var(--gold); }
+    .svc-name em { font-style: italic; color: var(--purple); }
     .svc-desc {
       font-size: 0.86rem;
       line-height: 1.7;
@@ -385,7 +450,7 @@
       gap: 0.5rem;
       transition: gap 0.2s, color 0.2s;
     }
-    .svc-link:hover { gap: 0.9rem; color: var(--gold); }
+    .svc-link:hover { gap: 0.9rem; color: var(--purple); }
 
     /* ─── MEET MAXINE ─── */
     .meet-grid {
@@ -425,7 +490,7 @@
       line-height: 1.4;
       color: var(--mid);
       padding-left: 1.5rem;
-      border-left: 2px solid var(--gold);
+      border-left: 2px solid var(--purple);
       margin-bottom: 2rem;
     }
     .meet-bio p {
@@ -505,7 +570,7 @@
       line-height: 1.2;
       margin-bottom: 0.8rem;
     }
-    .sp-name em { font-style: italic; color: var(--gold); }
+    .sp-name em { font-style: italic; color: var(--purple); }
     .sp-desc {
       font-size: 0.86rem;
       line-height: 1.7;
@@ -524,7 +589,7 @@
       gap: 0.5rem;
       transition: gap 0.2s, color 0.2s;
     }
-    .sp-link:hover { gap: 0.85rem; color: var(--gold); }
+    .sp-link:hover { gap: 0.85rem; color: var(--purple); }
 
     /* ─── CTA BAND ─── */
     .cta-band {
@@ -600,12 +665,12 @@
       color: rgba(246,242,235,0.55);
     }
     .footer-contact-info a { color: var(--teal); text-decoration: none; }
-    .footer-contact-info a:hover { color: var(--gold); }
+    .footer-contact-info a:hover { color: var(--purple); }
     .footer-col-head {
       font-size: 0.65rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--purple);
       margin-bottom: 1.2rem;
     }
     .footer-links { list-style: none; }
@@ -640,9 +705,9 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { height: 55vh; min-height: 320px; }
-      .hero-left { padding-top: 7rem; }
+      .hero { padding-top: 7rem; }
+      .portal-wrap { width: clamp(160px, 60vw, 260px); height: clamp(160px, 60vw, 260px); }
+      .hero-practitioner { display: none; }
       .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
       .intro-image-wrap { order: -1; }
       .services-grid { grid-template-columns: 1fr; }
@@ -679,30 +744,51 @@
 
   <!-- ══ HERO ══ -->
   <div class="hero">
-    <div class="hero-left">
-      <span class="hero-eyebrow rv">North Myrtle Beach, South Carolina</span>
-      <h1 class="hero-h1 rv d1">
-        Where<br>
-        <em>healing</em><br>
-        finds you.
-      </h1>
-      <p class="hero-sub rv d2">
-        Reiki, Sound Therapy &amp; Mindfulness — a sacred, transformative sanctuary for your mind, body &amp; spirit.
-      </p>
-      <div class="hero-ctas rv d3">
+    <!-- Ghosted background: Maxine -->
+    <img class="hero-bg" aria-hidden="true"
+      src="https://img77.uenicdn.com/image/upload/v1713904745/business/c15bc9a0-8cdb-40c9-a743-73a1fd3eba77/thumbnail-Maxine-jpg.jpg"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1200&q=60';"
+      alt=""
+    />
+    <div class="hero-bg-overlay"></div>
+
+    <!-- Top text -->
+    <div class="hero-text-top rv">
+      <span class="hero-eyebrow">North Myrtle Beach, South Carolina</span>
+      <h1 class="hero-h1">Step into the<br><em>enchanted realm</em></h1>
+    </div>
+
+    <!-- Portal: rotating yin yang -->
+    <div class="portal-wrap rv d1">
+      <div class="portal-ring portal-ring-5"></div>
+      <div class="portal-ring portal-ring-4"></div>
+      <div class="portal-ring portal-ring-3"></div>
+      <div class="portal-ring portal-ring-2"></div>
+      <div class="portal-ring portal-ring-1"></div>
+      <img class="yin-yang-spin"
+        src="https://img77.uenicdn.com/image/upload/v1714420119/business/fdde7c44d2fc44f38fa56c422be0e6e1.png"
+        alt="Zen Harmony"
+      />
+    </div>
+
+    <!-- Sub + CTAs -->
+    <div class="hero-text-bottom rv d2">
+      <p class="hero-sub">Where vibration becomes medicine and sound becomes sanctuary.</p>
+      <div class="hero-ctas">
         <a href="https://zen-harmony.com/contact-us" target="_blank" class="btn-primary">Book a Session</a>
         <a href="#services" class="btn-ghost">Explore Services</a>
       </div>
       <span class="hero-contact">(843) 214-2447 · Complimentary Consultation</span>
     </div>
-    <div class="hero-right">
-      <img
-        class="hero-photo"
+
+    <!-- Practitioner badge -->
+    <div class="hero-practitioner">
+      <img class="hero-practitioner-photo"
         src="https://img77.uenicdn.com/image/upload/v1713904745/business/c15bc9a0-8cdb-40c9-a743-73a1fd3eba77/thumbnail-Maxine-jpg.jpg"
-        alt="Maxine Chen, RMT, VST — Master Reiki Practitioner &amp; Sound Therapist"
-        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559757175-5700dde675bc?w=900&q=80';"
+        alt="Maxine Chen"
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1559757175-5700dde675bc?w=200&q=80';"
       />
-      <div class="hero-photo-caption">
+      <div class="hero-practitioner-text">
         <strong>Maxine Chen</strong>
         <span>RMT · VST · Master Reiki Practitioner</span>
       </div>
@@ -743,10 +829,7 @@
           At Zen Harmony &amp; Sound Healing, we honor the ancient wisdom of Reiki, blending time-honored techniques with intuitive, modern practice. Reiki is more than energy healing — it's a gateway to deep restoration, spiritual balance, and emotional clarity.
         </p>
         <p class="rv d2">
-          Step into the enchanted realm of Sound Therapy Healing, where vibration becomes medicine and sound becomes sanctuary. We use the transformative power of frequencies to awaken your body's natural healing abilities, clear emotional blockages, and restore harmony across your energy systems.
-        </p>
-        <p class="rv d3" style="margin-bottom:2.2rem;">
-          Each session is a return to yourself — unhurried, intentional, and held within a space of deep compassion.
+          Step into the enchanted realm of Sound Therapy Healing, where vibration becomes medicine and sound becomes sanctuary. At Zen Harmony &amp; Sound Healing, we use the transformative power of frequencies to awaken your body's natural healing abilities, clear emotional blockages, and restore balance across your energy systems.
         </p>
         <a href="#services" class="btn-primary rv d3">Explore All Therapies →</a>
       </div>
