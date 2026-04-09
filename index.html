@@ -14,16 +14,16 @@
 
     /* ─── TOKENS ─── */
     :root {
-      --ink:        #0c1318;
-      --mid:        #1e2d38;
-      --cream:      #f6f2eb;
-      --cream-warm: #ede7db;
+      --ink:        #f6f2eb;
+      --mid:        #ddd8cf;
+      --cream:      #0c1318;
+      --cream-warm: #141e27;
       --teal:       #7ab8c8;
       --teal-deep:  #3d8fa8;
       --purple:     #625A8C;
       --purple-glow:rgba(98,90,140,0.5);
       --sage:       #8aab9d;
-      --muted:      rgba(246,242,235,0.55);
+      --muted:      rgba(12,19,24,0.55);
     }
 
     body {
@@ -45,7 +45,7 @@
       transition: background 0.45s ease, backdrop-filter 0.45s ease, box-shadow 0.45s ease;
     }
     #nav.scrolled {
-      background: rgba(12, 19, 24, 0.88);
+      background: rgba(246, 242, 235, 0.92);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       box-shadow: 0 1px 0 rgba(122,184,200,0.15);
@@ -220,7 +220,7 @@
       font-size: clamp(1.05rem, 1.6vw, 1.4rem);
       font-weight: 300;
       line-height: 1.65;
-      color: rgba(246,242,235,0.75);
+      color: rgba(12,19,24,0.75);
       max-width: 54ch;
       margin: 0 auto 2rem;
     }
@@ -252,7 +252,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       background: transparent;
-      border: 1px solid rgba(246,242,235,0.28);
+      border: 1px solid rgba(12,19,24,0.35);
       color: var(--cream);
       padding: 0.9rem 2.2rem;
       text-decoration: none;
@@ -265,7 +265,7 @@
       font-size: 0.68rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(246,242,235,0.3);
+      color: rgba(12,19,24,0.45);
     }
 
     /* ─── HERO PRACTITIONER BADGE ─── */
@@ -371,7 +371,7 @@
     .video-section-header p {
       font-size: 0.96rem;
       line-height: 1.75;
-      color: rgba(246,242,235,0.55);
+      color: rgba(12,19,24,0.65);
       max-width: 55ch;
       margin: 1rem auto 0;
     }
@@ -421,7 +421,7 @@
     .intro-body p {
       font-size: clamp(0.92rem, 1.05vw, 1rem);
       line-height: 1.85;
-      color: #3d3630;
+      color: rgba(246,242,235,0.82);
       margin-bottom: 1.2rem;
     }
     .intro-image-wrap {
@@ -432,6 +432,7 @@
       aspect-ratio: 4/5;
       object-fit: cover;
       display: block;
+      animation: sanctuary-float 7s ease-in-out infinite;
     }
     .intro-image-wrap::before {
       content: '';
@@ -440,6 +441,15 @@
       right: 1.2rem; bottom: 1.2rem;
       border: 1px solid rgba(122,184,200,0.4);
       pointer-events: none;
+      animation: sanctuary-frame 7s ease-in-out infinite;
+    }
+    @keyframes sanctuary-float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50%       { transform: translateY(-10px) scale(1.012); }
+    }
+    @keyframes sanctuary-frame {
+      0%, 100% { transform: translate(0px, 0px); opacity: 0.4; }
+      50%       { transform: translate(4px, -6px); opacity: 0.7; }
     }
     .intro-image-wrap::after {
       content: 'NORTH MYRTLE BEACH · SC';
@@ -495,7 +505,7 @@
       font-size: clamp(1.8rem, 2.6vw, 2.4rem);
       font-weight: 400;
       line-height: 1.15;
-      color: var(--cream);
+      color: #f6f2eb;
       margin-bottom: 0.9rem;
     }
     .svc-name em { font-style: italic; color: var(--purple); }
@@ -563,7 +573,7 @@
     .meet-bio p {
       font-size: 0.94rem;
       line-height: 1.85;
-      color: #46403a;
+      color: rgba(246,242,235,0.8);
       margin-bottom: 1rem;
     }
     .cred-tags {
@@ -590,7 +600,7 @@
       text-align: center;
       font-size: 0.96rem;
       line-height: 1.75;
-      color: rgba(246,242,235,0.55);
+      color: rgba(12,19,24,0.65);
       max-width: 55ch;
       margin: 0 auto 3.5rem;
     }
@@ -633,7 +643,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.6rem, 2.2vw, 2rem);
       font-weight: 400;
-      color: var(--cream);
+      color: #f6f2eb;
       line-height: 1.2;
       margin-bottom: 0.8rem;
     }
@@ -685,7 +695,7 @@
     .cta-band h2 em { font-style: italic; color: var(--teal); }
     .cta-band p {
       font-size: 1rem;
-      color: rgba(246,242,235,0.6);
+      color: rgba(12,19,24,0.65);
       max-width: 50ch;
       margin: 0 auto 2.8rem;
       line-height: 1.75;
@@ -710,7 +720,7 @@
       grid-template-columns: 2.2fr 1fr 1fr;
       gap: 3.5rem;
       padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(246,242,235,0.08);
+      border-bottom: 1px solid rgba(12,19,24,0.12);
       margin-bottom: 1.8rem;
     }
     .footer-brand-name {
@@ -729,7 +739,7 @@
     .footer-contact-info {
       font-size: 0.84rem;
       line-height: 2.1;
-      color: rgba(246,242,235,0.55);
+      color: rgba(12,19,24,0.6);
     }
     .footer-contact-info a { color: var(--teal); text-decoration: none; }
     .footer-contact-info a:hover { color: var(--purple); }
@@ -744,7 +754,7 @@
     .footer-links li { margin-bottom: 0.65rem; }
     .footer-links a {
       font-size: 0.84rem;
-      color: rgba(246,242,235,0.55);
+      color: rgba(12,19,24,0.6);
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -752,7 +762,7 @@
     .footer-bottom {
       text-align: center;
       font-size: 0.72rem;
-      color: rgba(246,242,235,0.25);
+      color: rgba(12,19,24,0.4);
       line-height: 1.8;
     }
     .footer-bottom a { color: var(--teal); text-decoration: none; }
