@@ -91,7 +91,7 @@
 
     /* ─── HERO PORTAL ─── */
     .hero {
-      min-height: 100dvh;
+      height: max(620px, 56.25vw);
       position: relative;
       display: flex;
       flex-direction: column;
@@ -99,8 +99,8 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
-      background: var(--ink);
-      padding: clamp(6rem, 12vw, 9rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+      background: var(--cream);
+      padding: clamp(5rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem) clamp(2.5rem, 4vw, 4rem);
       gap: 0;
     }
     .hero-bg {
@@ -116,7 +116,7 @@
     .hero-bg-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 50% 55%, rgba(98,90,140,0.18) 0%, var(--ink) 68%);
+      background: radial-gradient(ellipse at 50% 50%, rgba(246,242,235,0.25) 0%, rgba(246,242,235,0.55) 100%);
       pointer-events: none;
     }
     .hero-text-top {
