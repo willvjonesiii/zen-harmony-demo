@@ -353,41 +353,48 @@
       .hero-bg { display: none; }
     }
 
-    /* ─── FEATURED VIDEO SECTION ─── */
-    .video-section {
-      background: var(--ink);
-      padding: clamp(4.5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+    /* ─── MEET MAXINE (framed inset) ─── */
+    .meet-section {
+      background: var(--cream-warm);
+      padding: clamp(4.5rem, 10vw, 8.5rem) clamp(1.5rem, 5vw, 4rem);
     }
-    .video-section-inner {
-      max-width: 960px;
+    .meet-grid-framed {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1320px;
       margin: 0 auto;
     }
-    .video-section-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    .video-section-header .section-title { color: var(--cream); }
-    .video-section-header .section-eyebrow { color: var(--teal); }
-    .video-section-header p {
-      font-size: 0.96rem;
-      line-height: 1.75;
-      color: rgba(12,19,24,0.65);
-      max-width: 55ch;
-      margin: 1rem auto 0;
-    }
-    .video-embed-wrap {
+    .meet-image-wrap {
       position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border: 1px solid rgba(98,90,140,0.3);
+      padding-bottom: 2rem;
     }
-    .video-embed-wrap iframe {
-      position: absolute;
-      inset: 0;
+    .meet-image-wrap img {
       width: 100%;
-      height: 100%;
-      border: none;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      animation: sanctuary-float 7s ease-in-out infinite;
+    }
+    .meet-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: -1.2rem; left: -1.2rem;
+      right: 1.2rem; bottom: 2.8rem;
+      border: 1px solid rgba(98,90,140,0.45);
+      pointer-events: none;
+      animation: sanctuary-frame 7s ease-in-out infinite;
+    }
+    .meet-image-wrap::after {
+      content: 'MAXINE CHEN · RMT · VST';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--sage);
     }
 
     /* ─── SECTION UTILITIES ─── */
@@ -411,38 +418,138 @@
     .section-title em { font-style: italic; color: var(--purple); }
     .max-w { max-width: 1320px; margin-left: auto; margin-right: auto; }
 
-    /* ─── INTRO ─── */
-    .intro-grid {
+    /* ─── SANCTUARY (full-bleed left) ─── */
+    .sanctuary-section {
+      padding: 0;
+      background: var(--cream);
+    }
+    .sanctuary-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
+      min-height: 80vh;
     }
-    .intro-body p {
+    .sanctuary-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .sanctuary-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .sanctuary-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, transparent 55%, var(--cream) 100%);
+    }
+    .sanctuary-content {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 6vw, 6rem) clamp(2.5rem, 5vw, 5rem);
+    }
+    .sanctuary-content p {
       font-size: clamp(0.92rem, 1.05vw, 1rem);
       line-height: 1.85;
       color: rgba(246,242,235,0.82);
       margin-bottom: 1.2rem;
     }
-    .intro-image-wrap {
-      position: relative;
+
+    /* ─── VIDEO THUMBNAIL ─── */
+    .video-thumb-section {
+      background: var(--cream);
+      padding: 0 clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem);
     }
-    .intro-image-wrap img {
+    .video-thumb-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .video-thumb-header {
+      text-align: center;
+      margin-bottom: 2.2rem;
+    }
+    .video-thumb-header .section-eyebrow { color: var(--teal); }
+    .video-thumb-header .section-title { color: var(--ink); }
+    .video-thumb-wrap {
+      position: relative;
+      cursor: pointer;
+      border: 1px solid rgba(98,90,140,0.35);
+      overflow: hidden;
+    }
+    .video-thumb-wrap img {
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 16/9;
       object-fit: cover;
       display: block;
-      animation: sanctuary-float 7s ease-in-out infinite;
+      transition: transform 0.5s ease;
     }
-    .intro-image-wrap::before {
-      content: '';
+    .video-thumb-wrap:hover img { transform: scale(1.03); }
+    .play-btn {
       position: absolute;
-      top: -1.2rem; left: -1.2rem;
-      right: 1.2rem; bottom: 1.2rem;
-      border: 1px solid rgba(122,184,200,0.4);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(98,90,140,0.88);
+      border: 2px solid rgba(246,242,235,0.55);
+      color: #f6f2eb;
+      font-size: 1.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 6px;
+      transition: background 0.25s, transform 0.25s;
       pointer-events: none;
-      animation: sanctuary-frame 7s ease-in-out infinite;
     }
+    .video-thumb-wrap:hover .play-btn {
+      background: var(--purple);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    /* ─── LIGHTBOX ─── */
+    .yt-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(12,19,24,0.93);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .yt-lightbox.open { display: flex; }
+    .yt-lightbox-inner {
+      position: relative;
+      width: min(92vw, 1000px);
+      aspect-ratio: 16/9;
+      cursor: default;
+    }
+    .yt-lightbox-inner iframe {
+      width: 100%; height: 100%;
+      border: none;
+      display: block;
+    }
+    .yt-close {
+      position: absolute;
+      top: -3rem; right: 0;
+      background: none;
+      border: none;
+      color: rgba(246,242,235,0.75);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      transition: color 0.2s;
+    }
+    .yt-close:hover { color: var(--teal); }
+
+    /* ─── KEYFRAMES (shared) ─── */
     @keyframes sanctuary-float {
       0%, 100% { transform: translateY(0px) scale(1); }
       50%       { transform: translateY(-10px) scale(1.012); }
@@ -450,15 +557,6 @@
     @keyframes sanctuary-frame {
       0%, 100% { transform: translate(0px, 0px); opacity: 0.4; }
       50%       { transform: translate(4px, -6px); opacity: 0.7; }
-    }
-    .intro-image-wrap::after {
-      content: 'NORTH MYRTLE BEACH · SC';
-      position: absolute;
-      bottom: -1.8rem;
-      right: 0;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: var(--sage);
     }
 
     /* ─── SERVICES ─── */
@@ -529,35 +627,11 @@
     }
     .svc-link:hover { gap: 0.9rem; color: var(--purple); }
 
-    /* ─── MEET MAXINE ─── */
-    .meet-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 85vh;
-    }
-    .meet-photo {
-      position: relative;
-      overflow: hidden;
-    }
-    .meet-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
-    }
-    .meet-photo::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, transparent 55%, var(--cream-warm) 100%);
-    }
+    /* ─── MEET MAXINE content styles ─── */
     .meet-content {
-      background: var(--cream-warm);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: clamp(3rem, 6vw, 6rem) clamp(2.5rem, 5vw, 5rem);
     }
     .meet-quote {
       font-family: 'Cormorant Garamond', serif;
@@ -785,13 +859,15 @@
       .hero { padding-top: 7rem; }
       .portal-wrap { width: clamp(160px, 60vw, 260px); height: clamp(160px, 60vw, 260px); }
       .hero-practitioner { display: none; }
-      .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .intro-image-wrap { order: -1; }
+      .sanctuary-grid { grid-template-columns: 1fr; }
+      .sanctuary-photo { height: 55vh; order: -1; }
+      .sanctuary-photo::after { background: linear-gradient(to bottom, transparent 55%, var(--cream) 100%); }
+      .sanctuary-content { padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2.5rem); }
       .services-grid { grid-template-columns: 1fr; }
       .service-card { aspect-ratio: 16/10; }
-      .meet-grid { grid-template-columns: 1fr; }
-      .meet-photo { height: 65vh; }
-      .meet-photo::after { display: none; }
+      .meet-grid-framed { grid-template-columns: 1fr; gap: 2.5rem; }
+      .meet-image-wrap img { aspect-ratio: 4/3; }
+      .meet-image-wrap::before { bottom: 1rem; }
       .special-grid { grid-template-columns: 1fr; }
       .special-card { min-height: 340px; }
       .footer-top { grid-template-columns: 1fr; gap: 2rem; }
@@ -902,10 +978,16 @@
     </div>
   </div>
 
-  <!-- ══ INTRO ══ -->
-  <section class="section-pad" style="background: var(--cream);">
-    <div class="intro-grid max-w">
-      <div class="intro-body">
+  <!-- ══ SANCTUARY ══ -->
+  <section class="sanctuary-section" id="sanctuary">
+    <div class="sanctuary-grid">
+      <div class="sanctuary-photo rv">
+        <img
+          src="https://images.unsplash.com/photo-1458501534264-7d326fa0ca04?q=80&w=1170&auto=format&fit=crop"
+          alt="Zen Harmony healing sanctuary"
+        />
+      </div>
+      <div class="sanctuary-content">
         <span class="section-eyebrow rv">Your Sanctuary</span>
         <h2 class="section-title rv d1" style="margin-bottom:1.5rem;">
           A place where<br><em>balance</em> returns.
@@ -916,32 +998,24 @@
         <p class="rv d2">
           Step into the enchanted realm of Sound Therapy Healing, where vibration becomes medicine and sound becomes sanctuary. At Zen Harmony &amp; Sound Healing, we use the transformative power of frequencies to awaken your body's natural healing abilities, clear emotional blockages, and restore balance across your energy systems.
         </p>
-        <a href="#services" class="btn-primary rv d3">Explore All Therapies →</a>
-      </div>
-      <div class="intro-image-wrap rv d2">
-        <img
-          src="https://images.unsplash.com/photo-1458501534264-7d326fa0ca04?q=80&w=1170&auto=format&fit=crop"
-          alt="Zen Harmony healing sanctuary"
-        />
+        <a href="#services" class="btn-primary rv d3" style="align-self:flex-start;">Explore All Therapies →</a>
       </div>
     </div>
   </section>
 
-  <!-- ══ FEATURED VIDEO ══ -->
-  <section class="video-section">
-    <div class="video-section-inner">
-      <div class="video-section-header rv">
+  <!-- ══ FEATURED VIDEO (within dark zone) ══ -->
+  <section class="video-thumb-section">
+    <div class="video-thumb-inner">
+      <div class="video-thumb-header rv">
         <span class="section-eyebrow">Experience Zen Harmony</span>
         <h2 class="section-title">Hear it. <em>Feel it.</em></h2>
-        <p>Step inside the sanctuary — watch Maxine guide you through the transformative world of Reiki and Sound Healing.</p>
       </div>
-      <div class="video-embed-wrap rv d1">
-        <iframe
-          src="https://www.youtube.com/embed/0kDBfmARzWY?rel=0&modestbranding=1"
-          title="Zen Harmony — Reiki &amp; Sound Healing"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+      <div class="video-thumb-wrap rv d1" onclick="openYTLightbox()" role="button" aria-label="Play video">
+        <img
+          src="https://img.youtube.com/vi/0kDBfmARzWY/maxresdefault.jpg"
+          alt="Watch Maxine guide you through Reiki and Sound Healing at Zen Harmony"
+        />
+        <div class="play-btn" aria-hidden="true">▶</div>
       </div>
     </div>
   </section>
@@ -986,9 +1060,9 @@
   </section>
 
   <!-- ══ MEET MAXINE ══ -->
-  <section style="padding:0;" id="practitioner">
-    <div class="meet-grid">
-      <div class="meet-photo">
+  <section class="meet-section" id="practitioner">
+    <div class="meet-grid-framed">
+      <div class="meet-image-wrap rv">
         <img
           src="https://img77.uenicdn.com/image/upload/v1713904745/business/c15bc9a0-8cdb-40c9-a743-73a1fd3eba77/thumbnail-Maxine-jpg.jpg"
           alt="Maxine Chen, RMT, VST"
@@ -1112,6 +1186,18 @@
     </div>
   </footer>
 
+  <!-- ══ YOUTUBE LIGHTBOX ══ -->
+  <div id="ytLightbox" class="yt-lightbox" onclick="if(event.target===this)closeYTLightbox()">
+    <div class="yt-lightbox-inner">
+      <button class="yt-close" onclick="closeYTLightbox()">✕ Close</button>
+      <iframe id="ytLightboxFrame" src=""
+        title="Zen Harmony — Reiki &amp; Sound Healing"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
   <script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
@@ -1120,6 +1206,18 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.rv').forEach(el => observer.observe(el));
+
+    function openYTLightbox() {
+      document.getElementById('ytLightboxFrame').src = 'https://www.youtube.com/embed/0kDBfmARzWY?autoplay=1&rel=0&modestbranding=1';
+      document.getElementById('ytLightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeYTLightbox() {
+      document.getElementById('ytLightboxFrame').src = '';
+      document.getElementById('ytLightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeYTLightbox(); });
   </script>
 
 </body>
