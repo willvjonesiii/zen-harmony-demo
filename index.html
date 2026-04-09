@@ -268,6 +268,17 @@
       color: rgba(12,19,24,0.7);
     }
 
+    /* ─── HERO BOTTOM FADE ─── */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 7rem;
+      background: linear-gradient(to bottom, transparent, var(--purple));
+      z-index: 1;
+      pointer-events: none;
+    }
+
     /* ─── HERO PRACTITIONER BADGE ─── */
     .hero-practitioner {
       position: absolute;
@@ -282,6 +293,13 @@
       padding: 0.6rem 1.1rem 0.6rem 0.5rem;
       border-radius: 3rem;
       border: 1px solid rgba(246,242,235,0.12);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .hero-practitioner:hover {
+      background: rgba(98,90,140,0.55);
+      border-color: rgba(98,90,140,0.5);
     }
     .hero-practitioner-photo {
       width: 48px; height: 48px;
@@ -948,7 +966,7 @@
     </div>
 
     <!-- Practitioner badge -->
-    <div class="hero-practitioner">
+    <a href="#practitioner" class="hero-practitioner">
       <img class="hero-practitioner-photo"
         src="https://img77.uenicdn.com/image/upload/v1713904745/business/c15bc9a0-8cdb-40c9-a743-73a1fd3eba77/thumbnail-Maxine-jpg.jpg"
         alt="Maxine Chen"
@@ -958,7 +976,7 @@
         <strong>Maxine Chen</strong>
         <span>RMT · VST · Master Reiki Practitioner</span>
       </div>
-    </div>
+    </a>
   </div>
 
   <!-- ══ MARQUEE ══ -->
